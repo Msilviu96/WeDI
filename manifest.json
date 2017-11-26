@@ -1,0 +1,20 @@
+{
+	"name": "WeDl",
+	"version": "1.0",
+	"manifest_version": 2,
+	"description": "Web Data Interpreter",
+	"browser_action":{
+		"default_icon": "512.png",
+		"default_popup": "popup.html",
+        "default_title": "app"
+	},
+	"icons": { "16": "16.png",
+               "24": "24.png",
+               "32": "32.png",
+               "48": "48.png",
+               "128": "128.png",
+               "256": "256.png",
+               "512": "512.png"
+             }
+	
+}
