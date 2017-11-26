@@ -3,18 +3,25 @@
 	"version": "1.0",
 	"manifest_version": 2,
 	"description": "Web Data Interpreter",
-	"browser_action":{
-		"default_icon": "512.png",
-		"default_popup": "popup.html",
-        "default_title": "app"
+	"web_accessible_resources": [
+		"images/*.png",
+		"html",
+		"css/",
+		"images/32.png"
+	],
+	"browser_action": {
+		"default_icon": "images/512.png",
+		"default_popup": "html/popup.html",
+		"default_title": "app"
 	},
-	"icons": { "16": "16.png",
-               "24": "24.png",
-               "32": "32.png",
-               "48": "48.png",
-               "128": "128.png",
-               "256": "256.png",
-               "512": "512.png"
-             }
-	
+	"icons": {
+		"16": "images/16.png",
+		"24": "images/24.png",
+		"32": "images/32.png",
+		"48": "images/48.png",
+		"128": "images/128.png",
+		"256": "images/256.png",
+		"512": "images/512.png"
+	}
+
 }

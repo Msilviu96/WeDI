@@ -76,7 +76,7 @@ body {
 }
 .text2 {
 	float: right;
-	font-family: 'Times New Roman' width: 52px;
+	font-family: 'Times New Roman';
 }
 .separator2 {
 	position: relative;
@@ -87,10 +87,10 @@ body {
 }
 
 .menu-entry {
-	text-align:center;
+	text-align: center;
 	padding: 3px 4px 3px 8px;
 	cursor: pointer;
-	
+	font-family: 'Times New Roman';
 }
 
 	.menu-entry:hover {
@@ -99,3 +99,8 @@ body {
 		width:80%;
 		margin-left:6%;
 	}
+a {
+	text-decoration:none;
+	color:black;
+	
+}
