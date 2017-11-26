@@ -1,0 +1,101 @@
+.logo {
+	position: absolute;
+	left:17%;
+	height: 40px;
+	width: 110px;
+	top:0px;
+}
+
+h1 {
+	color: #486fd8;
+	float: left;
+	font-size: 25px;
+	margin: 0px;
+	top: 0px;
+	text-shadow: 1px 1px 3px #486fd8;
+	
+}
+
+.imgheader {
+	float: left;
+	margin-left: 20px;
+	margin-top:0px;
+}
+
+html {
+	height: 160px;
+	width: 180px;
+	background-color: #eaeafa
+}
+
+head {
+	background-color: yellow;
+}
+body {
+	position: relative;
+	top:0px;
+
+	height: 145px;
+	width: 163px;
+	
+}
+.separator {
+	position: relative;
+	top: 25%;
+	left:6%;
+	width: 88%;
+	border-top: 2px groove #d6d6f5;
+}
+.continut {
+	position: relative;
+	top: 30%;
+	left: 5%;
+	height: 90px;
+	width: 90%;
+	
+}
+.statistics {
+	
+	position: relative;
+	width: 100%;
+	height: 25%;
+	text-align: center;
+}
+.numberOfElements {
+	color: blue;
+	float: left;
+	width: 44px;
+	font-style: italic;
+	font-weight: bold;
+	text-align:right;
+}
+.text1 {
+	float: left;
+	font-family: 'Times New Roman';
+	width: 52px;
+}
+.text2 {
+	float: right;
+	font-family: 'Times New Roman' width: 52px;
+}
+.separator2 {
+	position: relative;
+	top: 0%;
+	left: 6%;
+	width: 88%;
+	border-top: 2px groove #d6d6f5;
+}
+
+.menu-entry {
+	text-align:center;
+	padding: 3px 4px 3px 8px;
+	cursor: pointer;
+	
+}
+
+	.menu-entry:hover {
+		-webkit-transition: all 0.3s ease-out;
+		background: #d5def6;
+		width:80%;
+		margin-left:6%;
+	}
