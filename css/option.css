@@ -1,34 +1,48 @@
 ﻿body {
 	background-image: url("../images/back3.jpg");
 }
+h1 {
+	position:relative;
+	left:40%;
+	top:5%;
+	color: #486fd8;
+	float: left;
+	font-size: 30px;
+	margin: 0px;
+	top: 0px;
+	text-shadow: 1px 1px 3px #486fd8;
+}
 .content {
 	position: absolute;
-	left: 35%;
+	left: 30%;
 	top: 5%;
 	height: 90%;
 	width: 40%;
 	background-color: rgba(234, 234, 250, 0.7);
 	border-radius: 25px;
 	text-align: center;
+	
 }
 .ce {
-	position:relative;
-	top:3%;
+	position: relative;
+	top: 3%;
 	display: inline-block;
-	float:left;
-	font-size:20px;
-	margin-left:5%;
-	margin-bottom:5%;
-	
+	float: left;
+	font-size: 20px;
+	margin-left: 5%;
+	margin-bottom: 5%;
+	font-family: 'Times New Roman';
 }
 .format {
 	position: relative;
-	top:2%;
-	left:5%;
-	width:65px;
-	font-size:25px;
-	
-	margin-top:35px;
+	top: 2%;
+	float: left;
+	width: 30%;
+	font-size: 25px;
+	text-align: left;
+	margin-top: 0px;
+	display: inline-block;
+	font-family: 'Times New Roman';
 }
 
 [type="checkbox"]:not(:checked),
@@ -105,4 +119,68 @@
 /* hover style just for information */
 label:hover:before {
 	border: 2px solid #4778d9 !important;
+}
+
+.lateral {
+	position:relative;
+	top:5%;
+	margin-top:3px;
+	float:left;
+	width:50%;
+	height:30px;
+	
+	margin-left:10%;
+}
+
+.ce2 {
+	position: relative;
+	top: 3%;
+	display: inline-block;
+	left:0%;
+	font-size: 20px;
+	width:100%;
+	margin-left: 5%;
+	margin-bottom: 5%;
+	
+}
+
+.myButton {
+	position: absolute; /* added */
+	bottom: 5%;
+	left:38%;
+	-moz-box-shadow: 3px 4px 0px 0px #1564ad;
+	-webkit-box-shadow: 3px 4px 0px 0px #1564ad;
+	box-shadow: 1px 1px 0px 0px #1564ad;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5',GradientType=0);
+	background-color: #486fd8;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #337bc4;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 17px;
+	font-weight: bold;
+	padding: 12px 44px;
+	text-decoration: none;
+	text-shadow: 1px 1px 3px #486fd8;
+	font-family: 'Times New Roman';
+	text-align:center;
+	width:8%;
+}
+
+	.myButton:hover {
+		
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff',GradientType=0);
+		background-color: #577adb;
+	}
+
+	.myButton:active {
+		position: relative;
+		top: 1px;
+	}
+a + myButton {
+	text-align: center;
 }
