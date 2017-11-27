@@ -178,8 +178,7 @@ label:hover:before {
 	}
 
 	.myButton:active {
-		position: relative;
-		top: 1px;
+		
 	}
 a + myButton {
 	text-align: center;
