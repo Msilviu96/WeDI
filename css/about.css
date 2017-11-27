@@ -1,0 +1,74 @@
+body {
+	background-color: #486fd8;
+}
+
+.icon-panel{
+  position: relative;
+  left:43%;
+  right:30%;
+  top: 30px;
+  height: 130px;
+  width: 130px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.icon-panel:hover{
+  box-shadow: 0 20px 28px rgba(0,0,0,0.25), 0 15px 1px rgba(0,0,0,0.22);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.panel {
+  position: relative;
+  left:25%;
+  right:30%;
+  top:80px;
+  background: #fff;
+  border-radius: 3px;
+  display: inline-block;
+  height: 350px;
+  width: 600px;
+  text-align: center;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+
+.person {
+	border-radius: 3px;
+	text-align:center;
+	line-height:900%;
+	font-family: 'Roboto';
+	font-size: 180%;
+	font-weight: bold;
+	display: inline-block;
+    width: 288px;
+	height: 200px;
+    float: left;
+	margin:6px;
+    background-color: #fff;
+	color: #486fd8;
+}
+
+.person:hover{
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	background-color: #6887DF;
+	color: #fff;	
+}
+
+.git{
+	border-radius: 3px;
+	position: relative;
+	background-color: #fff;
+	left: 1%;
+	top: 65%;
+	width: 587px;
+	height: 117px;
+	background-image: url(../images/github.png) ;
+}
+
+.git:hover{
+	background-image: url(../images/inverted.jpg);
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
