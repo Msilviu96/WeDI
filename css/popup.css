@@ -71,12 +71,12 @@ body {
 }
 .text1 {
 	float: left;
-	font-family: 'Times New Roman';
+	font-family: 'Roboto';
 	width: 52px;
 }
 .text2 {
 	float: right;
-	font-family: 'Times New Roman';
+	font-family: 'Roboto';
 }
 .separator2 {
 	position: relative;
@@ -90,7 +90,7 @@ body {
 	text-align: center;
 	padding: 3px 4px 3px 8px;
 	cursor: pointer;
-	font-family: 'Times New Roman';
+	font-family: 'Roboto';
 }
 
 	.menu-entry:hover {
