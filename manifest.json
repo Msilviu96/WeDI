@@ -23,7 +23,18 @@
 		"256": "images/256.png",
 		"512": "images/512.png"
 	},
-	
-	"content_security_policy": "\"script-src 'self' 'unsafe-eval'; object-src 'self'"
+
+	"content_security_policy": "\"script-src 'self' 'unsafe-eval'; object-src 'self'",
+	"background": {
+		"persistent": false,
+		"scripts": [ "javascript/background.js" ]
+	},
+	"content_scripts": [
+					{
+						"matches": [ "http://*/*", "https://*/*" ],
+						
+						"js": [ "javascript/content.js", "javascript/background.js" ]
+					}
+	]
 
 }
