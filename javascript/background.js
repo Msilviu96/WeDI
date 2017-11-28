@@ -1,3 +1,3 @@
 $('a').click(function () {
-	alert('asdsadasd');
+	alert('salut	');
 });
