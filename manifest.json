@@ -5,9 +5,16 @@
 	"description": "Web Data Interpreter",
 	"web_accessible_resources": [
 		"images/*.png",
-		"html",
+		"html/*",
 		"css/",
-		"images/32.png"
+		"./html/popup.html",
+		"javascript",
+		"javascript/*",
+		"javascript/content.js",
+		"javascript/background.js",
+		"images/32.png",
+		"javascript/getPagesSource.js",
+		"javascript/popup.js"
 	],
 	"browser_action": {
 		"default_icon": "images/512.png",
@@ -24,17 +31,22 @@
 		"512": "images/512.png"
 	},
 
-	"content_security_policy": "\"script-src 'self' 'unsafe-eval'; object-src 'self'",
-	"background": {
-		"persistent": false,
-		"scripts": [ "javascript/background.js" ]
-	},
-	"content_scripts": [
-					{
-						"matches": [ "http://*/*", "https://*/*" ],
-						
-						"js": [ "javascript/content.js", "javascript/background.js" ]
-					}
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+	//"background": {
+//		"persistent": false,
+//					"scripts": [ "javascript/background.js", "javascript/getPagesSource.js" ]
+//	},
+	//"content_scripts": [
+	//				{
+	//					"matches": [ "http://*/*", "https://*/*" ],
+	//
+	//					"js": [ "javascript/getPagesSource.js"]
+	//				}
+	//],
+	"permissions": [
+		"tabs",
+		"<all_urls>", // "http://*/*","https://*/*"             // Cross Site Access Requests
+		"storage"
 	]
 
 }
