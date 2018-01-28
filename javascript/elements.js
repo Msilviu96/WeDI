@@ -1,6 +1,6 @@
 
 
-chrome.storage.sync.get(['emails', 'webAddresses', 'telephones', 'timeUnits', 'coordinates', 'songs', 'pictures', 'mp4s', 'socialMedias', 'postalAddresses'], function (items) {
+chrome.storage.sync.get(['emails', 'webAddresses', 'telephones', 'timeUnits', 'coordinates', 'songs', 'pictures', 'videos', 'socialMedias', 'postalAddresses'], function (items) {
 	console.log(items);
 	console.log(items.emails);
 	var emails = document.getElementById("emails");
@@ -10,7 +10,7 @@ chrome.storage.sync.get(['emails', 'webAddresses', 'telephones', 'timeUnits', 'c
 	var coordinates = document.getElementById("coordinates1");
 	var songs = document.getElementById("songs");
 	var pictures = document.getElementById("images");
-	var mp4s = document.getElementById("videos");
+	var videos = document.getElementById("videos");
 	var socialMedias = document.getElementById("socialMedia");
 	var postalAddresses = document.getElementById("postalAddresss");
 
