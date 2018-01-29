@@ -87,21 +87,35 @@ function get_real_links(array, url){
 	return unique_elements(result)
 }
 
+function insert_array(array){
+	var html = '';
+	for(var i = 0; i<array.length; i++){
+		html = html + '<li>'
+		html = html + array[i]
+		html = html + '</li>\n'
+	}
+	html = html + '</ul>\n';
+	return html;
+}
 function listOfElements(string, url) {
+	var json_html,c_contacts, c_timeUnits, c_coordinates, c_userProfiles, c_socialMedia, media; 	
+	
 	//list of regex
 	telephone1Regex = /span>\s.\s(\d+\s*\d+\s*\d+)/gi;
     telephone2Regex = /tel:(\d+)"/gi;
-	//telephone3Regex = /Telefon:([^<]+)/gi;
 	emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi;
 	timeUnitsRegex = /\d+/;
 	webAddressesRegex = /(https?:\/\/[^\s]+)"/gi;
-	geographicCoordinatesRegex = /center=(\d{2}\.\d{7}).{3}(\d{2}\.\d{7})/;
+	geographicCoordinatesRegex = /">(\d{2}.\d{6}), (\d{2}.\d{6})/gi;
 	songRegex = /(?:href|src)="([^ ]*\.(?:mp3|wav|ogg|wma))/gi;
 	picturesRegex = /(?:href|content|src)="([^ ]*\.(?:ico|png|gif|jpg|jpeg|gif|bmp))"/gi;
+	pictures2Regex = /<img(?:(?!src).)*src="([^"]+)/gi;
 	videoRegex = /href="([^ ]*\.(?:flv|avi|wmv|mp4|mpg|mov))/gi;
+	video2Regex = /<video(?:(?!src).)+src="((?:(?!http).)+)?([^"]+)"><\/video>/gi;
+	youtubeRegex = /href="(https:\/\/www.youtube.com\/watch\?v=[a-zA-Z0-9]{11})/gi;
 	socialMediaRegex = /href="(https?:\/\/(www\.)?(?:facebook|twitter|linkedin|plus\.google|instagram|pinteres|snapchat|tumblr|reddit)\.com\/[^"]+)/gi;
-	postalAddressesRegex = /<div><span>((?:.oseaua|Str|Strada|Bd|Bulevardul)[^<]+)<\/span>/gi;
-
+	postalAddressesRegex = /<span>((?:.oseaua|Str|Strada|Bd|Bulevardul)[^<]+)<\/span>/gi;
+	
 	//declaration of arrays
 	var emails = [];
 	var webAddresses = [];
@@ -129,11 +143,10 @@ function listOfElements(string, url) {
 	while(current = telephone2Regex.exec(string))
 		telephones.push(current[1])
 		
-	//while(current = telephone3Regex.exec(string))
-		//telephones.push(current[1])
-		
-	while(current = geographicCoordinatesRegex.exec(string))
+	while(current = geographicCoordinatesRegex.exec(string)){
 		coordinates.push(current[1])
+		coordinates.push(current[2])
+	}
 	
 	while(current = songRegex.exec(string))
 		songs.push(current[1])
@@ -141,14 +154,23 @@ function listOfElements(string, url) {
 	while(current = picturesRegex.exec(string))
 		pictures.push(current[1])
 		
+	while(current = pictures2Regex.exec(string))
+		pictures.push(current[1])
+	
 	while(current = videoRegex.exec(string))
+		videos.push(current[1])
+	
+	while(current = video2Regex.exec(string))
+		videos.push(current[2])	
+		
+	while(current = youtubeRegex.exec(string))
 		videos.push(current[1])
 	
 	while(current = socialMediaRegex.exec(string))
 		socialMedias.push(current[1])
 		
-//	while(current = postalAddressesRegex.exec(string))
-//	postalAddresses.push(current[1])
+	while(current = postalAddressesRegex.exec(string))
+		postalAddresses.push(current[1])
 
    //processing arrays
 	webAddresses = web(webAddresses)
@@ -156,6 +178,7 @@ function listOfElements(string, url) {
 	videos = get_real_links(videos, url)
 	songs = get_real_links(songs, url)
 	emails = unique_elements(emails)
+	socialMedias = unique_elements(socialMedias)
 
 	var emailsLength = 0;
 	var webAddressesLength = 0;
@@ -220,25 +243,115 @@ function listOfElements(string, url) {
 	console.log("postalAddresses");
 	console.log(postalAddresses);
 	
-	var json = {
-		"webAddresses": webAddresses,
-		"emails": emails,
-		"telephones": telephones,
-		"coordinates": coordinates,
-		"songs": songs,
-		"pictures": pictures,
-		"videos": videos,
-		"social media": socialMedias,
-		"postalAddresses": postalAddresses
+	
+	chrome.storage.sync.get(['html', 'contactsV', 'timeUnitsV', 'urlsV', 'coordinatesV', 'userProfileV', 'mediaV'], function (items) {
+	json_html = items.html;
+	c_contacts = items.contactsV;
+	c_timeUnits = items.timeUnitsV;
+	c_urls = items.urlsV
+	c_coordinates = items.urlsV;
+	c_userProfiles = items.coordinatesV;
+	c_socialMedia = items.userProfileV;
+	media = items.mediaV;
+	
+	var file, type;	
+	if(json_html == true){
+		type = 'json';
+		file = {
+			"web addresses": webAddresses,
+			"emails": emails,
+			"telephones": telephones,
+			"coordinates": coordinates,
+			"time units": timeUnits,
+			"songs": songs,
+			"pictures": pictures,
+			"videos": videos,
+			"social media": socialMedias,
+			"postal addresses": postalAddresses
 		}
-	var s =JSON.stringify(json);
-	var bb = new BlobBuilder();
-bb.append(s);
-var blob = bb.getBlob(); 
-location.href = window.webkitURL.createObjectURL(blob);
-	
-	
+		
+		if(c_contacts == false){
+			delete file["telephones"];
+			delete file["emails"];
+			delete file["postal addresses"];
+		}
+		
+		if(c_timeUnits == false)
+			delete file["time units"];
+		
+		if(c_coordinates == false)
+			delete file["coordinates"];
+		
+		if(c_userProfiles == false)
+			delete file["social media"];
+		
+		if(c_urls == false)
+			delete file["web addresses"];
+		
+		if(media == false){
+			delete file["pictures"];
+			delete file["songs"];
+			delete file["videos"];
+		}
+		
+	}
+	else{
+		type = 'html';
+		
+		file =' <!DOCTYPE html>\n<html>\n<body>\n';
+		if(c_urls == true){
+			file= file +'<h2>Web addresses</h2>\n<ul>\n';
+			file = file + insert_array(webAddresses);
+		}
+		
+		if(c_contacts == true){
+			file = file + '<h2>Telephones</h2>\n<ul>\n';
+			file = file + insert_array(telephones);
+			file = file + '<h2>Emails</h2>\n<ul>\n';
+			file = file + insert_array(emails);
+			file = file + '<h2>Postal addresses</h2>\n<ul>\n';
+			file = file + insert_array(postalAddresses);
+		}
+		
+		if(c_timeUnits == true){
+			file = file + '<h2>Time units</h2>\n<ul>\n';
+			file = file + insert_array(timeUnits);
+		}
+		
+		if(c_coordinates == true){
+			file = file + '<h2>Coordinates</h2>\n<ul>\n';
+			file = file + insert_array(coordinates);
+		}
+		
+		if(c_userProfiles == true){
+			file = file + '<h2>Social media</h2>\n<ul>\n';
+			file = file + insert_array(socialMedias);
+		}
+		
+		if(media == true){
+			file = file + '<h2>Songs</h2>\n<ul>\n';
+			file = file + insert_array(songs);
+			file = file + '<h2>Pictures</h2>\n<ul>\n';
+			file = file + insert_array(pictures);
+			file = file + '<h2>Videos</h2>\n<ul>\n';
+			file = file + insert_array(videos);
+		}
+		file = file + '</head>\n</html>';
+	}
 
+	chrome.storage.sync.set({
+		'file': file,
+		'type': type
+	});
+
+});
+	
+	chrome.storage.sync.get(["file", "type"], function (items){
+		console.log(items["file"]);
+		console.log(items["type"]);
+	});
+
+	
 	//return a list of elements
 	return listex.filter(x => !!x);
 
