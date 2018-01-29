@@ -46,7 +46,8 @@
 	"permissions": [
 		"tabs",
 		"<all_urls>", // "http://*/*","https://*/*"             // Cross Site Access Requests
-		"storage"
+		"storage",
+                "downloads"
 	]
 
 }

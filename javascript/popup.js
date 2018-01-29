@@ -254,9 +254,9 @@ function listOfElements(string, url) {
 	c_socialMedia = items.userProfileV;
 	media = items.mediaV;
 	
-	var file, type;	
+	var file, file_type;	
 	if(json_html == true){
-		type = 'json';
+		file_type = 'application/json';
 		file = {
 			"web addresses": webAddresses,
 			"emails": emails,
@@ -293,10 +293,10 @@ function listOfElements(string, url) {
 			delete file["songs"];
 			delete file["videos"];
 		}
-		
+		file = JSON.stringify(file)
 	}
 	else{
-		type = 'html';
+		file_type = 'text/plain';
 		
 		file =' <!DOCTYPE html>\n<html>\n<body>\n';
 		if(c_urls == true){
@@ -341,15 +341,34 @@ function listOfElements(string, url) {
 
 	chrome.storage.sync.set({
 		'file': file,
-		'type': type
+		'type': file_type
 	});
 
 });
 	
-	chrome.storage.sync.get(["file", "type"], function (items){
-		console.log(items["file"]);
-		console.log(items["type"]);
-	});
+	
+	
+	var div_export = document.getElementById('export');
+	div_export.style.cursor = 'pointer';
+	div_export.onclick = function() {
+  		chrome.storage.sync.get(["file", "type"], function (item){
+				
+
+    var a = document.createElement('a');
+    var blob = new Blob([item["file"]], {type : item["type"]});
+    a.href = window.URL.createObjectURL(blob);
+	if(item["type"] == "text/plain")
+   		a.download = "export.html";
+	else
+		a.download = "export.json";
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click(); //this is probably the key - simulating a click on a download link
+    delete a;// we don't need this anymore
+
+			
+		});
+	};
 
 	
 	//return a list of elements
